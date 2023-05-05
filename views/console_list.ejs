@@ -1,0 +1,13 @@
+<%- include("header") -%>
+<div class="content">
+  <h1>Consoles</h1>
+    <div class="consoles">
+        <% for (const console of all_consoles){ %>
+                <div class="console">
+                    <h2><a href=<%=console.url%>><%=console.name%></a></h2>
+                    <p>Released: <%=console.release_year%></p>
+                </div>
+        <% } %>
+    </div>
+</div>
+<%- include("footer") -%>

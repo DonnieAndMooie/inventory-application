@@ -1,14 +1,14 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema
+const { Schema } = mongoose;
 
 const ConsoleSchema = new Schema({
-    name: {type: String, required: true},
-    release_year: {type: Number, min: 1900}
-})
+  name: { type: String, required: true },
+  release_year: { type: Number, min: 1900 },
+});
 
-ConsoleSchema.virtual("url").get(function(){
-    return `/inventory/${this._id}`
-})
+ConsoleSchema.virtual("url").get(function () {
+  return `/inventory/consoles/${this._id}`;
+});
 
-module.exports = mongoose.model("Console", ConsoleSchema)
+module.exports = mongoose.model("Console", ConsoleSchema);
