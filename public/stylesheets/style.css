@@ -3,6 +3,11 @@
   src: url(../fonts/Jost-Italic-VariableFont_wght.ttf);
 }
 
+@font-face {
+  font-family: "Inconsolata";
+  src: url("../fonts/Inconsolata-VariableFont_wdth\,wght.ttf");
+}
+
 *{
   padding: 0;
   margin: 0;
@@ -27,11 +32,12 @@ footer{
   color: white;
   padding: 20px 30px;
   align-items: center;
-  font-family: "Jost";
+  font-family: "Jost", sans-serif;
 }
 
 header{
   font-size: 28px;
+  border-bottom: 5px solid white;
 }
 
 .right-links{
@@ -41,11 +47,18 @@ header{
 
 footer{
   justify-content: center;
+  border-top: 5px solid white;
 }
 
 .content{
   height: 100%;
-  background-color: black
+  background-color: black;
+  color: white;
+  font-family: "Jost", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
 }
 
 header a:hover{
@@ -57,4 +70,32 @@ header a:hover{
 a{
   text-decoration: none;
   color: white;
+}
+
+.content h1{
+  font-size: 32px;
+}
+
+.welcome-description{
+  font-size: 24px;
+  font-style: italic;
+}
+
+.stats{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  color: red;
+  margin-top: 40px;
+  border-radius: 24px;
+  gap: 20px;
+  font-size: 24px;
+}
+
+.stats p{
+  font-family: "Inconsolata";
 }

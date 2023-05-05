@@ -1,5 +1,13 @@
 <%- include("header") -%>
 <div class="content">
-  <p>This is the content</p>
+  <h1>Welcome to the Video Game Inventory Application</h1>
+  <p class="welcome-description">Here you can view, create, update and delete video games!</p>
+
+  <div class="stats">
+    <h2>Stats about our inventory:</h2>
+    <p>Number of games consoles: <strong><%=num_consoles%></strong></p>
+    <p>Number of games: <strong><%=num_games%></strong></p>
+    <p>Number of game copies in stock: <strong><%=total_copies%></strong></p>
+  </div>
 </div>
 <%- include("footer") -%>
