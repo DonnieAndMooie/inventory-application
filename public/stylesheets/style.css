@@ -138,3 +138,32 @@ a{
   border-radius: 5px;
 }
 
+.add-new,
+.delete,
+.update{
+  background-color: yellow;
+  padding: 40px 20px;
+  font-size: 24px;
+  border-radius: 48px;
+  cursor: pointer;
+  border: none;
+  font-family: "Jost", sans-serif;
+  font-weight: bold;
+  margin-top: auto;
+  margin-bottom: 28px;
+}
+
+.add-new:hover,
+.delete:hover,
+.update:hover{
+  background-color: black;
+  color: yellow;
+  border: 1px solid white;
+  transition: all 0.2s ease-out;
+}
+
+.buttons{
+  margin-top: auto;
+  display: flex;
+  gap: 20px;
+}
