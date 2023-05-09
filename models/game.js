@@ -6,7 +6,7 @@ const GameSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true, minLength: 15 },
   release_year: { type: Number, min: 1900 },
-  games_console: { type: Schema.Types.ObjectId, ref: "console", required: true },
+  games_console: { type: Schema.Types.ObjectId, ref: "Console", required: true },
   price: { type: Number, required: true },
   number_in_stock: { type: Number, required: true },
 });

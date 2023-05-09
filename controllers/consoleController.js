@@ -3,14 +3,14 @@ const Console = require("../models/console");
 const Game = require("../models/game");
 
 exports.console_list = asyncHandler(async (req, res, next) => {
-  const allConsoles = await Console.find({});
+  const allConsoles = await Console.find({}).exec();
   res.render("console_list", { title: "Consoles", all_consoles: allConsoles });
 });
 
 exports.console_detail = asyncHandler(async (req, res, next) => {
   const [consoleObject, allGamesForConsole] = await Promise.all(
-    [Console.findById(req.params.id),
-      Game.find({ games_console: req.params.id })],
+    [Console.findById(req.params.id).exec(),
+      Game.find({ games_console: req.params.id }).exec()],
   );
   if (consoleObject === null) {
     const err = new Error("Console not found");

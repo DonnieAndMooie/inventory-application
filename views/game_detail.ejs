@@ -1,0 +1,12 @@
+<%- include("header") -%>
+<div class="content">
+  <div class="game-detail">
+    <h1><%=game.name%></h1>
+    <p>Released: <%=game.release_year%></p>
+    <p>Console: <a href=<%=game.games_console.url%>><%=game.games_console.name%></a></p>
+    <p class="description"><%=game.description%></p>
+    <p>Price: <%=game.price_formatted%></p>
+    <p>Copies in stock: <%=game.number_in_stock%></p>
+  </div>
+</div>
+<%- include("footer") -%>

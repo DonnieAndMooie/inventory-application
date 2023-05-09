@@ -1,0 +1,14 @@
+<%- include("header") -%>
+<div class="content">
+  <h1>Games</h1>
+    <div class="games">
+        <% for (const game of all_games){ %>
+            <div class="game">
+                <h2><a href=<%=game.url%>><%=game.name%></a></h2>
+                <p>Released: <%=game.release_year%></p>
+                <p>Console: <a href=<%=game.games_console.url%>><%=game.games_console.name%></a><p>
+            </div>
+        <% } %>
+    </div>
+</div>
+<%- include("footer") -%>
