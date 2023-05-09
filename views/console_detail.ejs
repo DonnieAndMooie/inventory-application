@@ -1,0 +1,18 @@
+<%- include("header") -%>
+<div class="content">
+  <h1><%=console.name%></h1>
+  <p>Released: <%=console.release_year%></p>
+  <h2><%=console.name%> Games:</h2>
+  <div class="console-games">
+    <% for (const game of all_games){%>
+        <div class="game">
+            <h2><%=game.name%></h2>
+            <p>Released: <%=game.release_year%></p>
+            <p class="description"><em><%=game.description%></em></p>
+            <p><strong><%=game.price_formatted%></strong></p>
+            <p>Copies in stock: <%=game.number_in_stock%></p>
+        </div>
+    <%}%>
+  </div>
+</div>
+<%- include("footer") -%>

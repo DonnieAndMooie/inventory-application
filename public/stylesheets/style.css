@@ -61,7 +61,7 @@ footer{
   padding-top: 40px;
 }
 
-header a:hover{
+a:hover{
   cursor: pointer;
   color: black;
   transition: all 0.2s ease-out;
@@ -100,7 +100,8 @@ a{
   font-family: "Inconsolata", sans-serif;
 }
 
-.consoles{
+.consoles,
+.console-games{
   display: flex;
   height: 100%;
   width: 100%;
@@ -108,7 +109,8 @@ a{
   flex-wrap: wrap;
 }
 
-.console{
+.console,
+.game{
   background-color: #F34213;
   color: white;
   margin: 20px;
@@ -124,4 +126,8 @@ a{
 .console p{
   font-family: "Inconsolata", sans-serif;
   font-style: italic;
+}
+
+.game .description{
+  font-size: 16px;
 }

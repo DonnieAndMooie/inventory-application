@@ -15,4 +15,12 @@ GameSchema.virtual("url").get(function () {
   return `/inventory/games/${this._id}`;
 });
 
+GameSchema.virtual("price_formatted").get(function () {
+  const formatter = new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+  });
+  return formatter.format(this.price);
+});
+
 module.exports = mongoose.model("Game", GameSchema);
