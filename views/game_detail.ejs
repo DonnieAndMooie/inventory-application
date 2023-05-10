@@ -9,9 +9,8 @@
     <p>Copies in stock: <%=game.number_in_stock%></p>
   </div>
   <div class="buttons">
-    <button class="delete">Delete Game</button>
-    <button class="update">Update Game</button>
+    <button class="delete" onclick="location.href='<%=game.url%>/delete'">Delete Game</button>
+    <button class="update" onclick="location.href='<%=game.url%>/update'">Update Game</button>
   </div>
-
 </div>
 <%- include("footer") -%>

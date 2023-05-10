@@ -1,0 +1,30 @@
+<%- include("header") -%>
+<div class="content">
+  <h1>Add New Console</h1>
+  <%if (locals.errors){%>
+    <div class="errors">
+      <h2>Please fix the following errors:</h2>
+      <%for (const err of errors){%>
+        <p><%=err.msg%></p>
+      <%}%>
+    </div>
+  <%}%>
+  <form action="" method="POST">
+    <div class="form-item">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required minlength="3">
+    </div>
+    <div class="form-item">
+      <label for="release_year">Year released:
+        <select name="release_year" id="release_year">
+          <option value=null>Please Select</option>
+          <%for (let i=2023; i > 1950; i--){ %>
+            <option value="<%=i%>"><%=i%></option>
+          <%}%>
+        </select></label>
+    </div>
+    
+    <button type="submit" class="add-new">Add Console</button>
+  </form>
+</div>
+<%- include("footer") -%>
