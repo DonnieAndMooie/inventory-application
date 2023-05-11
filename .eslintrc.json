@@ -12,6 +12,7 @@
     },
     "rules": {
         "quotes": ["error", "double"],
-        "no-restricted-syntax": "off"
+        "no-restricted-syntax": "off",
+        "no-underscore-dangle": "off"
     }
 }
