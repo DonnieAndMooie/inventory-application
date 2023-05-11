@@ -21,8 +21,8 @@ exports.game_detail = asyncHandler(async (req, res, next) => {
 exports.game_create_get = asyncHandler(async (req, res, next) => {
   const referrer = req.get("Referrer");
   const referrerID = referrer.split("/").pop();
-  const referrerConsole = await Console.findById(referrerID);
-  if (referrerConsole !== undefined) {
+  if (referrerID !== "games") {
+    const referrerConsole = await Console.findById(referrerID);
     res.render("game_form", { title: "Add Game", all_consoles: [referrerConsole] });
   }
   const allConsoles = await Console.find({}, "name");
@@ -104,10 +104,74 @@ exports.game_delete_post = asyncHandler(async (req, res, next) => {
   res.redirect(game.games_console.url);
 });
 
-exports.game_update_get = (req, res, next) => {
-  res.send("NOT IMPLEMENTED");
-};
+exports.game_update_get = asyncHandler(async (req, res, next) => {
+  const [game, allConsoles] = await Promise.all([
+    Game.findById(req.params.id).populate("games_console"),
+    Console.find({}),
+  ]);
+  res.render("game_form", { title: "Update Game", game, all_consoles: allConsoles });
+});
 
-exports.game_update_post = (req, res, next) => {
-  res.send("NOT IMPLEMENTED");
-};
+exports.game_update_post = [
+  body("name")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Please enter a name"),
+  body("release_year")
+    .trim()
+    .escape()
+    .optional({ checkFalsy: true }),
+  body("description")
+    .trim()
+    .isLength({ min: 20 })
+    .escape()
+    .withMessage("Description must be at least 20 characters"),
+  body("games_console")
+    .trim()
+    .escape()
+    .not()
+    .equals(null)
+    .withMessage("Please select a games console"),
+  body("price")
+    .trim()
+    .isNumeric()
+    .escape()
+    .withMessage("Please enter a price"),
+  body("number_in_stock")
+    .trim()
+    .escape()
+    .isNumeric()
+    .withMessage("Please enter number in stock"),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const [gamesConsole, allConsoles] = await Promise.all([
+      Console.findOne({ name: req.body.games_console }, "_id"),
+      Console.find({}),
+    ]);
+
+    const newGame = new Game({
+      name: req.body.name,
+      release_year: req.body.release_year,
+      description: req.body.description,
+      games_console: gamesConsole._id,
+      price: req.body.price,
+      number_in_stock: req.body.number_in_stock,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("game_form", {
+        title: "Update Game",
+        game: newGame,
+        errors: errors.array(),
+        all_consoles: allConsoles,
+      });
+    } else {
+      const theGame = await Game.findByIdAndUpdate(req.params.id, newGame, {});
+      res.redirect(theGame.url);
+    }
+  }),
+
+];
