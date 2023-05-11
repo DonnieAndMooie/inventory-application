@@ -93,13 +93,16 @@ exports.game_create_post = [
 
 ];
 
-exports.game_delete_get = (req, res, next) => {
-  res.send("NOT IMPLEMENTED");
-};
+exports.game_delete_get = asyncHandler(async (req, res, next) => {
+  const game = await Game.findById(req.params.id).populate("games_console");
+  res.render("game_delete", { title: "Delete Game", game });
+});
 
-exports.game_delete_post = (req, res, next) => {
-  res.send("NOT IMPLEMENTED");
-};
+exports.game_delete_post = asyncHandler(async (req, res, next) => {
+  const game = await Game.findById(req.params.id).populate("games_console");
+  await Game.deleteOne(game);
+  res.redirect(game.games_console.url);
+});
 
 exports.game_update_get = (req, res, next) => {
   res.send("NOT IMPLEMENTED");

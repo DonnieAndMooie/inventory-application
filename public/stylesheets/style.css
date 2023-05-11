@@ -37,6 +37,11 @@ header{
   top: 0;
 }
 
+.content{
+  display: flex;
+  flex-direction: column;
+}
+
 .right-links{
   display: flex;
   gap: 20px;
@@ -216,4 +221,33 @@ input{
 textarea{
   font-family: "Jost", sans-serif;
   font-size: 20px;
+}
+
+.confirm-delete{
+  width: 50%;
+  padding-top: 20vh;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 5px solid grey;
+}
+
+.delete-form{
+  border: none;
+}
+
+@media (max-width: 1000px) {
+  header{
+    font-size: 20px;
+  }
+  h1{
+    text-align: center;
+  }
+  .consoles,
+  .console-games,
+  .games{
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .confirm-delete{
+    width: 80%;
+  }
 }
