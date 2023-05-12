@@ -74,10 +74,36 @@ exports.console_delete_post = asyncHandler(async (req, res, next) => {
   res.redirect("/inventory/consoles");
 });
 
-exports.console_update_get = (req, res, next) => {
-  res.send("NOT IMPLEMENTED");
-};
+exports.console_update_get = asyncHandler(async (req, res, next) => {
+  const console = await Console.findById(req.params.id);
+  res.render("console_form", { title: "Update Console", console });
+});
 
-exports.console_update_post = (req, res, next) => {
-  res.send("NOT IMPLEMENTED");
-};
+exports.console_update_post = [
+  body("name")
+    .trim()
+    .isLength({ min: 3 })
+    .escape()
+    .withMessage("Name must be at least 3 characters long"),
+  body("release_year")
+    .optional({ checkFalsy: true })
+    .trim()
+    .escape(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const newConsole = new Console({
+      _id: req.params.id,
+      name: req.body.name,
+      release_year: req.body.release_year,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("console_form", { console: newConsole, title: "Update Console", errors: errors.array() });
+    }
+
+    const theConsole = await Console.findByIdAndUpdate(req.params.id, newConsole, {});
+    res.redirect(theConsole.url);
+  }),
+];
