@@ -235,6 +235,18 @@ textarea{
   border: none;
 }
 
+.delete-games{
+  background-color: #F34213;
+  max-width: 60%;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.delete-games h2{
+  font-size: 32px;
+}
+
 @media (max-width: 1000px) {
   header{
     font-size: 20px;

@@ -1,0 +1,18 @@
+<%- include("header") -%>
+<div class="content">
+    <% if (all_games.length === 0){ %>
+        <h1 class="confirm-delete">Are you sure you want to delete <%=console.name%>?</h1>
+        <form action="" method="POST" class="delete-form">
+            <button class="delete">Delete Console</button>
+        </form>
+    <% } else {%>
+        <div class="delete-games">
+            <h1>In order to delete <%=console.name%> you must delete the following games:</h1>
+            <%for (game of all_games){%>
+                <h2><a href="<%=game.url%>"><%=game.name%></a></h2>
+            <% } %>
+        <% } %>
+        </div>
+</div>
+
+<%- include("footer") -%>

@@ -61,13 +61,18 @@ exports.console_create_post = [
     }
   }),
 ];
-exports.console_delete_get = (req, res, next) => {
-  res.send("NOT IMPLEMENTED");
-};
+exports.console_delete_get = asyncHandler(async (req, res, next) => {
+  const [console, allGamesForConsole] = await Promise.all([
+    Console.findById(req.params.id),
+    Game.find({ games_console: req.params.id }),
+  ]);
+  res.render("console_delete", { title: "Delete Console", console, all_games: allGamesForConsole });
+});
 
-exports.console_delete_post = (req, res, next) => {
-  res.send("NOT IMPLEMENTED");
-};
+exports.console_delete_post = asyncHandler(async (req, res, next) => {
+  await Console.findByIdAndDelete(req.params.id);
+  res.redirect("/inventory/consoles");
+});
 
 exports.console_update_get = (req, res, next) => {
   res.send("NOT IMPLEMENTED");

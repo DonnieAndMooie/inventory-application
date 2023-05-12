@@ -11,7 +11,11 @@
         </div>
     <%}%>
   </div>
-  <button class="add-new" onclick="location.href='/inventory/games/create'">+ Add Game</button>
+  <div class="buttons">
+    <button class="delete" onclick="location.href='<%=console.url%>/delete'">Delete Console</button>
+    <button class="add-new" onclick="location.href='/inventory/games/create'">+ Add Game</button>
+  </div>
+  
 </div>
 
 <%- include("footer") -%>
