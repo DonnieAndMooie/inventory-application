@@ -270,6 +270,10 @@ img{
   color: green;
 }
 
+.game-detail img{
+  height: 220px;
+}
+
 @media (max-width: 1000px) {
   header{
     font-size: 20px;

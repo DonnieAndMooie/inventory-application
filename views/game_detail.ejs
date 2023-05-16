@@ -3,6 +3,9 @@
   <div class="game-detail">
     <h1><%=game.name%></h1>
     <p>Released: <%=game.release_year%></p>
+    <% if (!(JSON.stringify(game.image) === JSON.stringify({}))){ %>
+      <img src="data:<%=game.image.fileType%>;base64, <%= game.base64 %>" />
+    <%}%>
     <p>Console: <a href=<%=game.games_console.url%>><%=game.games_console.name%></a></p>
     <p class="description"><%=game.description%></p>
     <p>Price: <%=game.price_formatted%></p>

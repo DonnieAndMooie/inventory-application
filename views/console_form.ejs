@@ -26,7 +26,7 @@
     <div class="form-item">
       <label for="image">Upload Image:
         <input type="file" id="image" name="image">
-        <%if (JSON.stringify(locals.console.image) !== JSON.stringify({})){%>
+        <%if (locals.console && JSON.stringify(locals.console.image) !== JSON.stringify({})){%>
           <p class="current-file">Current Image: <%=console.image.name%></p>
           <%}%>
       </label>

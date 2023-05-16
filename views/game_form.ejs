@@ -9,7 +9,7 @@
       <%}%>
     </div>
   <%}%>
-  <form action="" method="POST">
+  <form action="" method="POST" enctype="multipart/form-data">
     <div class="form-item">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required value="<%=locals.game===undefined ? '': locals.game.name%>">
@@ -42,6 +42,14 @@
     <div class="form-item">
         <label for="number_in_stock">Number in stock:</label>
         <input type="number" id="number_in_stock" name="number_in_stock" min="0" required value="<%=locals.game===undefined ? '': locals.game.number_in_stock%>">
+    </div>
+    <div class="form-item">
+      <label for="image">Upload Image:
+        <input type="file" id="image" name="image">
+        <%if (locals.game && JSON.stringify(locals.game.image) !== JSON.stringify({})){%>
+          <p class="current-file">Current Image: <%=game.image.name%></p>
+          <%}%>
+      </label>
     </div>
     <button type="submit" class="add-new add-new-game"><%=title%></button>
   </form>

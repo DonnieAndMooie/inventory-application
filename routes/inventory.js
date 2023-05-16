@@ -30,7 +30,7 @@ router.get("/consoles/:id", consoleController.console_detail);
 
 router.get("/games/create", gamesController.game_create_get);
 
-router.post("/games/create", gamesController.game_create_post);
+router.post("/games/create", upload.single("image"), gamesController.game_create_post);
 
 router.get("/games/:id/delete", gamesController.game_delete_get);
 
@@ -38,7 +38,7 @@ router.post("/games/:id/delete", gamesController.game_delete_post);
 
 router.get("/games/:id/update", gamesController.game_update_get);
 
-router.post("/games/:id/update", gamesController.game_update_post);
+router.post("/games/:id/update", upload.single("image"), gamesController.game_update_post);
 
 router.get("/games", gamesController.games_list);
 

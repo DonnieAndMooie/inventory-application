@@ -42,7 +42,6 @@ exports.game_create_post = [
   body("description")
     .trim()
     .isLength({ min: 20 })
-    .escape()
     .withMessage("Description must be at least 20 characters"),
   body("games_console")
     .trim()
@@ -77,6 +76,14 @@ exports.game_create_post = [
       price: req.body.price,
       number_in_stock: req.body.number_in_stock,
     });
+
+    if (req.file) {
+      game.image = {
+        name: req.file.originalname,
+        data: req.file.buffer,
+        fileType: req.file.mimetype,
+      };
+    }
 
     if (!errors.isEmpty()) {
       res.render("game_form", {
@@ -125,7 +132,6 @@ exports.game_update_post = [
   body("description")
     .trim()
     .isLength({ min: 20 })
-    .escape()
     .withMessage("Description must be at least 20 characters"),
   body("games_console")
     .trim()
@@ -145,6 +151,8 @@ exports.game_update_post = [
     .withMessage("Please enter number in stock"),
 
   asyncHandler(async (req, res, next) => {
+    console.log(req.body);
+    console.log(req.file);
     const errors = validationResult(req);
     const [gamesConsole, allConsoles] = await Promise.all([
       Console.findOne({ name: req.body.games_console }, "_id"),
@@ -160,6 +168,14 @@ exports.game_update_post = [
       number_in_stock: req.body.number_in_stock,
       _id: req.params.id,
     });
+
+    if (req.file) {
+      newGame.image = {
+        name: req.file.originalname,
+        data: req.file.buffer,
+        fileType: req.file.mimetype,
+      };
+    }
 
     if (!errors.isEmpty()) {
       res.render("game_form", {

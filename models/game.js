@@ -9,6 +9,11 @@ const GameSchema = new Schema({
   games_console: { type: Schema.Types.ObjectId, ref: "Console", required: true },
   price: { type: Number, required: true },
   number_in_stock: { type: Number, required: true },
+  image: {
+    name: { type: String },
+    data: { type: Buffer },
+    fileType: { type: String },
+  },
 });
 
 GameSchema.virtual("url").get(function () {
@@ -21,6 +26,10 @@ GameSchema.virtual("price_formatted").get(function () {
     currency: "GBP",
   });
   return formatter.format(this.price);
+});
+
+GameSchema.virtual("base64").get(function () {
+  return this.image.data.toString("base64");
 });
 
 module.exports = mongoose.model("Game", GameSchema);
