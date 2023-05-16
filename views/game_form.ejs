@@ -19,19 +19,19 @@
         <select name="release_year" id="release_year">
           <option value=null>Please Select</option>
           <%for (let i=2023; i > 1950; i--){ %>
-            <option <%=i===game.release_year ? 'selected' : ''%> value="<%=i%>"><%=i%></option>
+            <option <%=locals.game!==undefined && i===game.release_year ? 'selected' : ''%> value="<%=i%>"><%=i%></option>
           <%}%>
         </select></label>
     </div>
     <div class="form-item">
         <label for="description">Description of game:</label>
-        <textarea name="description" id="description" required cols="40" rows="6"><%=locals.game.description===undefined ? '': locals.game.description%> </textarea>
+        <textarea name="description" id="description" required cols="40" rows="6"><%=locals.game===undefined ? '': locals.game.description%> </textarea>
     </div>
     <div class="form-item">
         <label for="games_console">Games Console:</label>
         <select name="games_console" id="games_console" required>
             <% for (const console of all_consoles){%>
-                <option <%=String(console._id)===String(game.games_console._id) ? "selected" : ""%> value="<%=console.name%>"><%=console.name%></option>
+                <option <%=locals.game!==undefined && String(console._id)===String(game.games_console._id) ? "selected" : ""%> value="<%=console.name%>"><%=console.name%></option>
             <%}%>
         </select>
     </div>

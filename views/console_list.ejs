@@ -6,6 +6,9 @@
                 <div class="console">
                     <h2><a href=<%=console.url%>><%=console.name%></a></h2>
                     <p>Released: <%=console.release_year%></p>
+                    <% if (!(JSON.stringify(console.image) === JSON.stringify({}))){ %>
+                        <img src="data:<%=console.image.fileType%>;base64, <%= console.base64 %>" />
+                      <%}%>
                 </div>
         <% } %>
     </div>

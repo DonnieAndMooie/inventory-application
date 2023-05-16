@@ -49,6 +49,14 @@ exports.console_create_post = [
       release_year: req.body.release_year,
     });
 
+    if (req.file) {
+      newConsole.image = {
+        name: req.file.originalname,
+        data: req.file.buffer,
+        fileType: req.file.mimetype,
+      };
+    }
+
     if (!errors.isEmpty()) {
       res.render("console_form", {
         title: "Add Console",
@@ -98,6 +106,14 @@ exports.console_update_post = [
       name: req.body.name,
       release_year: req.body.release_year,
     });
+
+    if (req.file) {
+      newConsole.image = {
+        name: req.file.originalname,
+        data: req.file.buffer,
+        fileType: req.file.mimetype,
+      };
+    }
 
     if (!errors.isEmpty()) {
       res.render("console_form", { console: newConsole, title: "Update Console", errors: errors.array() });

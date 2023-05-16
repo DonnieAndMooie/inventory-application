@@ -9,21 +9,28 @@
       <%}%>
     </div>
   <%}%>
-  <form action="" method="POST">
+  <form action="" method="POST" enctype="multipart/form-data">
     <div class="form-item">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required minlength="3" value="<%=console.name%>">
+      <input type="text" id="name" name="name" required minlength="3" value="<%= locals.console===undefined ? '' : console.name%>">
     </div>
     <div class="form-item">
       <label for="release_year">Year released:
         <select name="release_year" id="release_year">
           <option value=null>Please Select</option>
           <%for (let i=2023; i > 1950; i--){ %>
-            <option <%=i===console.release_year ? 'selected' : ''%> value="<%=i%>"><%=i%></option>
+            <option <%=locals.console!==undefined && i===console.release_year ? 'selected' : ''%> value="<%=i%>"><%=i%></option>
           <%}%>
         </select></label>
     </div>
-    
+    <div class="form-item">
+      <label for="image">Upload Image:
+        <input type="file" id="image" name="image">
+        <%if (JSON.stringify(locals.console.image) !== JSON.stringify({})){%>
+          <p class="current-file">Current Image: <%=console.image.name%></p>
+          <%}%>
+      </label>
+    </div>
     <button type="submit" class="add-new"><%=title%></button>
   </form>
 </div>
