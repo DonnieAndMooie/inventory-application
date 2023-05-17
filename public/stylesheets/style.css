@@ -305,7 +305,7 @@ img{
   color: black;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   header{
     font-size: 20px;
   }
@@ -319,5 +319,19 @@ img{
   }
   .confirm-delete{
     width: 80%;
+  }
+}
+
+@media (max-width: 700px){
+  header{
+    font-size: 10px;
+    justify-content: space-between;
+  }
+  .consoles,
+  .console-games,
+  .games{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
