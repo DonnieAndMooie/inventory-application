@@ -17,7 +17,6 @@
     <div class="form-item">
       <label for="release_year">Year released:
         <select name="release_year" id="release_year">
-          <option value=null>Please Select</option>
           <%for (let i=2023; i > 1950; i--){ %>
             <option <%=locals.game!==undefined && i===game.release_year ? 'selected' : ''%> value="<%=i%>"><%=i%></option>
           <%}%>
@@ -51,7 +50,29 @@
           <%}%>
       </label>
     </div>
-    <button type="submit" class="add-new add-new-game"><%=title%></button>
+    <div class="<%=title==="Update Game" ? "password" : "hide password"%>">
+      <p>Please enter admin password to confirm:</p>
+      <input type="password" id="password">
+      <button type="button" class="confirm-password">Confirm</button>
+      <p class="error hide">Incorrect Password</p>
+    </div>
+    <button type="submit" class="<%=title==="Update Game" ? "hide add-new add-new-game" : "add-new"%>"><%=title%>"</button>
   </form>
 </div>
 <%- include("footer") -%>
+<script>
+  const passwordDiv = document.querySelector(".password")
+  const submitBtn = document.querySelector(".add-new")
+  const confirmPassword = document.querySelector(".confirm-password")
+  const input = document.getElementById("password")
+  const error = document.querySelector(".error")
+  confirmPassword.addEventListener("click", () => {
+    if (input.value === '<%=process.env.ADMIN_PASSWORD%>'){
+      submitBtn.classList.remove("hide")
+      passwordDiv.classList.add("hide")
+    }
+    else{
+      error.classList.remove("hide")
+    }
+  })
+</script>

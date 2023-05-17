@@ -274,6 +274,37 @@ img{
   height: 220px;
 }
 
+.password{
+  background-color: #F34213;
+  padding: 20px 40px;
+  border-radius: 20px;
+  font-size: 22px;
+}
+
+.password button{
+  background-color: white;
+  font-family: "Jost", sans-serif;
+  height: 32px;
+  font-size: 22px;
+  border: none;
+  transition: all 0.2s ease-in;
+}
+
+.password button:hover{
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.hide{
+  display: none;
+}
+
+.error{
+  font-weight: bold;
+  color: black;
+}
+
 @media (max-width: 1000px) {
   header{
     font-size: 20px;
